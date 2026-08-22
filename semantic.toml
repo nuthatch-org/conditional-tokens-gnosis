@@ -1,0 +1,302 @@
+# semantic.toml - what this nest's data *means* (RFC-0016). Read by the MCP `schema`
+# tool, the admin UI, and the scaffolded skill. Edit descriptions freely; the
+# `[table.*.footguns]` are DERIVED from the ABI and regenerated - leave them be.
+
+schema_version = 1
+
+[nest]
+description = "The `conditional-tokens-gnosis` nest on gnosis. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__approval_for_all]
+description = "`ApprovalForAll(address,address,bool)` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per ApprovalForAll(address,address,bool) event"
+
+[table.conditional_tokens__approval_for_all.columns]
+approved = "The `approved` bool parameter - stored as exact text `'true'`/`'false'`, not a SQL boolean. `approved = true` and `AND`/`NOT` implicitly cast and work; `COALESCE`, `CASE`, `bool_and`/`bool_or` and `UNION` do not. Write `approved = 'true'` or `CAST(approved AS BOOLEAN)`. (seeded from the ABI - edit semantic.toml to improve this)"
+operator = "The `operator` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+owner = "The `owner` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__approval_for_all.footguns]
+bools = ["approved"]
+
+[table.conditional_tokens__condition_preparation]
+description = "`ConditionPreparation(bytes32,address,bytes32,uint256)` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per ConditionPreparation(bytes32,address,bytes32,uint256) event"
+
+[table.conditional_tokens__condition_preparation.columns]
+conditionId = "The `conditionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+oracle = "The `oracle` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+outcomeSlotCount = "The `outcomeSlotCount` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+questionId = "The `questionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__condition_preparation.footguns]
+big_ints = ["outcomeSlotCount"]
+overflows_dec = ["outcomeSlotCount"]
+
+[table.conditional_tokens__condition_resolution]
+description = "`ConditionResolution(bytes32,address,bytes32,uint256,uint256[])` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per ConditionResolution(bytes32,address,bytes32,uint256,uint256[]) event"
+
+[table.conditional_tokens__condition_resolution.columns]
+conditionId = "The `conditionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+oracle = "The `oracle` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+outcomeSlotCount = "The `outcomeSlotCount` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+payoutNumerators = "The `payoutNumerators` uint256[] parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+questionId = "The `questionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__condition_resolution.footguns]
+big_ints = ["outcomeSlotCount"]
+overflows_dec = ["outcomeSlotCount"]
+
+[table.conditional_tokens__payout_redemption]
+description = "`PayoutRedemption(address,address,bytes32,bytes32,uint256[],uint256)` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per PayoutRedemption(address,address,bytes32,bytes32,uint256[],uint256) event"
+
+[table.conditional_tokens__payout_redemption.columns]
+collateralToken = "The `collateralToken` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+conditionId = "The `conditionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+indexSets = "The `indexSets` uint256[] parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+parentCollectionId = "The `parentCollectionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+payout = "The `payout` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+redeemer = "The `redeemer` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__payout_redemption.footguns]
+big_ints = ["payout"]
+overflows_dec = ["payout"]
+
+[table.conditional_tokens__position_split]
+description = "`PositionSplit(address,address,bytes32,bytes32,uint256[],uint256)` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per PositionSplit(address,address,bytes32,bytes32,uint256[],uint256) event"
+
+[table.conditional_tokens__position_split.columns]
+amount = "The `amount` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+collateralToken = "The `collateralToken` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+conditionId = "The `conditionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+parentCollectionId = "The `parentCollectionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+partition = "The `partition` uint256[] parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+stakeholder = "The `stakeholder` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__position_split.footguns]
+big_ints = ["amount"]
+overflows_dec = ["amount"]
+
+[table.conditional_tokens__positions_merge]
+description = "`PositionsMerge(address,address,bytes32,bytes32,uint256[],uint256)` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per PositionsMerge(address,address,bytes32,bytes32,uint256[],uint256) event"
+
+[table.conditional_tokens__positions_merge.columns]
+amount = "The `amount` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+collateralToken = "The `collateralToken` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+conditionId = "The `conditionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+parentCollectionId = "The `parentCollectionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+partition = "The `partition` uint256[] parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+stakeholder = "The `stakeholder` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__positions_merge.footguns]
+big_ints = ["amount"]
+overflows_dec = ["amount"]
+
+[table.conditional_tokens__transfer_batch]
+description = "`TransferBatch(address,address,address,uint256[],uint256[])` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per TransferBatch(address,address,address,uint256[],uint256[]) event"
+
+[table.conditional_tokens__transfer_batch.columns]
+from = "The `from` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+ids = "The `ids` uint256[] parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+operator = "The `operator` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+to = "The `to` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+values = "The `values` uint256[] parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__transfer_batch.footguns]
+reserved_words = [
+    "from",
+    "to",
+    "values",
+]
+
+[table.conditional_tokens__transfer_single]
+description = "`TransferSingle(address,address,address,uint256,uint256)` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per TransferSingle(address,address,address,uint256,uint256) event"
+
+[table.conditional_tokens__transfer_single.columns]
+from = "The `from` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+id = "The `id` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+operator = "The `operator` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+to = "The `to` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+value = "The `value` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__transfer_single.footguns]
+reserved_words = [
+    "from",
+    "to",
+]
+big_ints = [
+    "id",
+    "value",
+]
+overflows_dec = [
+    "id",
+    "value",
+]
+
+[table.conditional_tokens__u_r_i]
+description = "`URI(string,uint256)` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per URI(string,uint256) event"
+
+[table.conditional_tokens__u_r_i.columns]
+id = "The `id` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+value = "The `value` string parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__u_r_i.footguns]
+big_ints = ["id"]
+overflows_dec = ["id"]
+
+[table.conditional_tokens__approval_for_all]
+description = "`ApprovalForAll(address,address,bool)` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per ApprovalForAll(address,address,bool) event"
+
+[table.conditional_tokens__approval_for_all.columns]
+approved = "The `approved` bool parameter - stored as exact text `'true'`/`'false'`, not a SQL boolean. `approved = true` and `AND`/`NOT` implicitly cast and work; `COALESCE`, `CASE`, `bool_and`/`bool_or` and `UNION` do not. Write `approved = 'true'` or `CAST(approved AS BOOLEAN)`. (seeded from the ABI - edit semantic.toml to improve this)"
+operator = "The `operator` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+owner = "The `owner` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__approval_for_all.footguns]
+bools = ["approved"]
+
+[table.conditional_tokens__condition_preparation]
+description = "`ConditionPreparation(bytes32,address,bytes32,uint256)` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per ConditionPreparation(bytes32,address,bytes32,uint256) event"
+
+[table.conditional_tokens__condition_preparation.columns]
+conditionId = "The `conditionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+oracle = "The `oracle` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+outcomeSlotCount = "The `outcomeSlotCount` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+questionId = "The `questionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__condition_preparation.footguns]
+big_ints = ["outcomeSlotCount"]
+overflows_dec = ["outcomeSlotCount"]
+
+[table.conditional_tokens__condition_resolution]
+description = "`ConditionResolution(bytes32,address,bytes32,uint256,uint256[])` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per ConditionResolution(bytes32,address,bytes32,uint256,uint256[]) event"
+
+[table.conditional_tokens__condition_resolution.columns]
+conditionId = "The `conditionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+oracle = "The `oracle` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+outcomeSlotCount = "The `outcomeSlotCount` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+payoutNumerators = "The `payoutNumerators` uint256[] parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+questionId = "The `questionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__condition_resolution.footguns]
+big_ints = ["outcomeSlotCount"]
+overflows_dec = ["outcomeSlotCount"]
+
+[table.conditional_tokens__payout_redemption]
+description = "`PayoutRedemption(address,address,bytes32,bytes32,uint256[],uint256)` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per PayoutRedemption(address,address,bytes32,bytes32,uint256[],uint256) event"
+
+[table.conditional_tokens__payout_redemption.columns]
+collateralToken = "The `collateralToken` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+conditionId = "The `conditionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+indexSets = "The `indexSets` uint256[] parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+parentCollectionId = "The `parentCollectionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+payout = "The `payout` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+redeemer = "The `redeemer` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__payout_redemption.footguns]
+big_ints = ["payout"]
+overflows_dec = ["payout"]
+
+[table.conditional_tokens__position_split]
+description = "`PositionSplit(address,address,bytes32,bytes32,uint256[],uint256)` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per PositionSplit(address,address,bytes32,bytes32,uint256[],uint256) event"
+
+[table.conditional_tokens__position_split.columns]
+amount = "The `amount` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+collateralToken = "The `collateralToken` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+conditionId = "The `conditionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+parentCollectionId = "The `parentCollectionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+partition = "The `partition` uint256[] parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+stakeholder = "The `stakeholder` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__position_split.footguns]
+big_ints = ["amount"]
+overflows_dec = ["amount"]
+
+[table.conditional_tokens__positions_merge]
+description = "`PositionsMerge(address,address,bytes32,bytes32,uint256[],uint256)` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per PositionsMerge(address,address,bytes32,bytes32,uint256[],uint256) event"
+
+[table.conditional_tokens__positions_merge.columns]
+amount = "The `amount` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+collateralToken = "The `collateralToken` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+conditionId = "The `conditionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+parentCollectionId = "The `parentCollectionId` bytes32 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+partition = "The `partition` uint256[] parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+stakeholder = "The `stakeholder` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__positions_merge.footguns]
+big_ints = ["amount"]
+overflows_dec = ["amount"]
+
+[table.conditional_tokens__transfer_batch]
+description = "`TransferBatch(address,address,address,uint256[],uint256[])` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per TransferBatch(address,address,address,uint256[],uint256[]) event"
+
+[table.conditional_tokens__transfer_batch.columns]
+from = "The `from` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+ids = "The `ids` uint256[] parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+operator = "The `operator` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+to = "The `to` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+values = "The `values` uint256[] parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__transfer_batch.footguns]
+reserved_words = [
+    "from",
+    "to",
+    "values",
+]
+
+[table.conditional_tokens__transfer_single]
+description = "`TransferSingle(address,address,address,uint256,uint256)` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per TransferSingle(address,address,address,uint256,uint256) event"
+
+[table.conditional_tokens__transfer_single.columns]
+from = "The `from` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+id = "The `id` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+operator = "The `operator` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+to = "The `to` address parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+value = "The `value` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__transfer_single.footguns]
+reserved_words = [
+    "from",
+    "to",
+]
+big_ints = [
+    "id",
+    "value",
+]
+overflows_dec = [
+    "id",
+    "value",
+]
+
+[table.conditional_tokens__u_r_i]
+description = "`URI(string,uint256)` events emitted by the `conditional_tokens` contract. (seeded from the ABI - edit semantic.toml to improve this)"
+grain = "one row per URI(string,uint256) event"
+
+[table.conditional_tokens__u_r_i.columns]
+id = "The `id` uint256 parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+value = "The `value` string parameter. (seeded from the ABI - edit semantic.toml to improve this)"
+
+[table.conditional_tokens__u_r_i.footguns]
+big_ints = ["id"]
+overflows_dec = ["id"]
+
+[view]
+
+# Authored views (views/*.sql) are described here so the MCP/`/schema` can render them:
+# [view.your_view_name]
+# description = "What this derivation computes."

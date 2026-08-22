@@ -1,0 +1,16 @@
+[nest]
+name = "conditional-tokens-gnosis"
+chain = "gnosis"
+chain_id = 100
+rpc_urls = [
+    "https://rpc.gnosischain.com",
+    "https://rpc.gnosis.gateway.fm",
+]
+schema_version = 1
+block_timestamps = true
+
+[[contracts]]
+alias = "conditional_tokens"
+address = "0xceafdd6bc0bef976fdcd1112955828e00543c0ce"
+start_block = 11782150
+abi = "abis/conditional-tokens.json"

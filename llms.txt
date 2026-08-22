@@ -1,0 +1,30 @@
+# nuthatch nest on gnosis
+
+A self-hosted blockchain index. Query it locally; there is no third-party API.
+
+## Contracts
+- `conditional_tokens` = 0xceafdd6bc0bef976fdcd1112955828e00543c0ce
+
+## Tables (one per contract event)
+- `conditional_tokens__approval_for_all` - ApprovalForAll(address,address,bool) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, owner, operator, approved)
+- `conditional_tokens__condition_preparation` - ConditionPreparation(bytes32,address,bytes32,uint256) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, conditionId, oracle, questionId, outcomeSlotCount)
+- `conditional_tokens__condition_resolution` - ConditionResolution(bytes32,address,bytes32,uint256,uint256[]) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, conditionId, oracle, questionId, outcomeSlotCount, payoutNumerators)
+- `conditional_tokens__payout_redemption` - PayoutRedemption(address,address,bytes32,bytes32,uint256[],uint256) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, redeemer, collateralToken, parentCollectionId, conditionId, indexSets, payout)
+- `conditional_tokens__position_split` - PositionSplit(address,address,bytes32,bytes32,uint256[],uint256) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, stakeholder, collateralToken, parentCollectionId, conditionId, partition, amount)
+- `conditional_tokens__positions_merge` - PositionsMerge(address,address,bytes32,bytes32,uint256[],uint256) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, stakeholder, collateralToken, parentCollectionId, conditionId, partition, amount)
+- `conditional_tokens__transfer_batch` - TransferBatch(address,address,address,uint256[],uint256[]) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, operator, from, to, ids, values)
+- `conditional_tokens__transfer_single` - TransferSingle(address,address,address,uint256,uint256) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, operator, from, to, id, value)
+- `conditional_tokens__u_r_i` - URI(string,uint256) (block_number, block_hash, block_timestamp, tx_hash, log_index, address, _seq, value, id)
+
+## Live HTTP API (run `nuthatch dev`)
+- `GET /`                    index status
+- `GET /tables`              every table with its columns
+- `GET /table/{name}?limit=N` recent rows of one table (hot + sealed)
+- `GET /entity/{id}`         one row by id (`{block:012}-{logindex:06}`)
+- `GET /sql?q=SELECT...`     read-only SQL; each table is a view named `{alias}__{event}`
+- `GET /balances?limit=N`    top holder balances (when an ERC-20 Transfer table is present)
+- `GET /balance/{address}`   one address's derived balance
+
+## MCP (for coding agents)
+Run `nuthatch mcp` (stdio) to expose tools: status, schema, tables, table, sql, entity,
+balance, top_balances. Fully offline against the local instance; nothing phones home.
