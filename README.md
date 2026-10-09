@@ -1,6 +1,6 @@
 # conditional-tokens-gnosis
 
-A [nuthatch](https://github.com/nightswatchhq/nuthatch) nest: **Gnosis Conditional Tokens**.
+A [nuthatch](https://github.com/nuthatch-org/nuthatch) nest: **Gnosis Conditional Tokens**.
 
 The collateral layer Omen and other prediction markets settle on: conditions, positions, splits, merges and redemptions.
 
@@ -21,7 +21,7 @@ Indexed blocks **47,357,373 to 47,857,342** and sealed **273,076 events**. Every
 ## Run it
 
 ```sh
-nuthatch init --from https://github.com/nightswatchhq/conditional-tokens-gnosis
+nuthatch init --from https://github.com/nuthatch-org/conditional-tokens-gnosis
 cd conditional-tokens-gnosis
 nuthatch dev --dir . --backfill 50000 --seal-direct
 nuthatch sql --dir . "SELECT count(*) FROM \"conditional_tokens__approval_for_all\""
